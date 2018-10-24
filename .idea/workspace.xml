@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6b16ee97-2bc6-464b-befc-0dd8dd8115b2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/static/img/favicon/site.webmanifest" beforeDir="false" afterPath="$PROJECT_DIR$/main/static/img/favicon/site.webmanifest" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/templates/success.html" beforeDir="false" afterPath="$PROJECT_DIR$/main/templates/success.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/templates/test.html" beforeDir="false" afterPath="$PROJECT_DIR$/main/templates/test.html" afterDir="false" />
     </list>
@@ -25,15 +25,16 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="html" value="550" />
+          <entry key="html" value="557" />
           <entry key="py" value="726" />
           <entry key="txt" value="11" />
+          <entry key="webmanifest" value="14" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="HTML" value="550" />
-          <entry key="PLAIN_TEXT" value="11" />
+          <entry key="HTML" value="557" />
+          <entry key="PLAIN_TEXT" value="25" />
           <entry key="Python" value="726" />
         </counts>
       </usages-collector>
@@ -43,12 +44,13 @@
           <entry key="keep" value="1" />
           <entry key="py" value="8" />
           <entry key="txt" value="2" />
+          <entry key="webmanifest" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="HTML" value="2" />
-          <entry key="PLAIN_TEXT" value="3" />
+          <entry key="PLAIN_TEXT" value="4" />
           <entry key="Python" value="8" />
         </counts>
       </usages-collector>
@@ -72,12 +74,21 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main/templates/success.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="10" selection-start-line="10" selection-end-line="10" />
+            <state relative-caret-position="408">
+              <caret line="17" column="83" lean-forward="true" selection-start-line="17" selection-start-column="83" selection-end-line="17" selection-end-column="83" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/main/static/img/favicon/site.webmanifest">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="48">
+              <caret line="2" column="26" selection-start-line="2" selection-start-column="26" selection-end-line="2" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -94,11 +105,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main/templates/test.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
+            <state relative-caret-position="408">
+              <caret line="17" column="83" lean-forward="true" selection-start-line="8" selection-start-column="4" selection-end-line="17" selection-end-column="83" />
             </state>
           </provider>
         </entry>
@@ -130,8 +141,9 @@
         <option value="$PROJECT_DIR$/samurai/settings.py" />
         <option value="$PROJECT_DIR$/main/urls.py" />
         <option value="$PROJECT_DIR$/main/views.py" />
-        <option value="$PROJECT_DIR$/main/templates/success.html" />
         <option value="$PROJECT_DIR$/main/templates/test.html" />
+        <option value="$PROJECT_DIR$/main/templates/success.html" />
+        <option value="$PROJECT_DIR$/main/static/img/favicon/site.webmanifest" />
       </list>
     </option>
   </component>
@@ -319,10 +331,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/main/templates/test.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="17" column="83" lean-forward="true" selection-start-line="8" selection-start-column="4" selection-end-line="17" selection-end-column="83" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main/templates/success.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
+        <state relative-caret-position="408">
+          <caret line="17" column="83" lean-forward="true" selection-start-line="17" selection-start-column="83" selection-end-line="17" selection-end-column="83" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -330,10 +349,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main/templates/test.html">
+    <entry file="file://$PROJECT_DIR$/main/static/img/favicon/site.webmanifest">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
+        <state relative-caret-position="48">
+          <caret line="2" column="26" selection-start-line="2" selection-start-column="26" selection-end-line="2" selection-end-column="26" />
         </state>
       </provider>
     </entry>
