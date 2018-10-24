@@ -26,7 +26,7 @@ SECRET_KEY = '+e#_*7)=1faww)^vius00b@ve2+2e8#_ngcf-f85t@q%+vani&'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['samuray-pablo.herokuapp.com', 'www.samuray.ml']
+ALLOWED_HOSTS = ['samuray-pablo.herokuapp.com', 'www.samuray.ml', '127.0.0.1']
 
 
 # Application definition

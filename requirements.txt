@@ -5,3 +5,8 @@ gunicorn==19.9.0
 psycopg2==2.7.4
 whitenoise==4.0
 Pillow==5.1.0
+nokia==1.1.0
+oauthlib==2.1.0
+requests==2.19.1
+requests-oauth==0.4.1
+requests-oauthlib==1.0.0
