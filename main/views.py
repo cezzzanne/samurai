@@ -7,7 +7,6 @@ CALLBACK_URI = "http://127.0.0.1:8000/test/success"
 
 def test(request):
     auth = NokiaAuth(CLIENT_ID, CONSUMER_SECRET, callback_uri=CALLBACK_URI)
-    GLOBAL_AUTH = auth
     authorize_url = auth.get_authorize_url()
     return render(request, 'test.html', {"auth_url": authorize_url})
 
@@ -18,4 +17,4 @@ def test_success(request):
     credentials = auth.get_credentials(authorization_response)
     client = NokiaApi(credentials)
     measures = client.get_measures(limit=1)
-    return render(request, 'success.html', {'var': credentials.user_id})
+    return render(request, 'success.html', {'var': measures[0].weight})

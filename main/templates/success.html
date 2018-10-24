@@ -3,9 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <title>Success</title>
+    {% load static %}
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
 <body>
-<p>you were able to authorize Withings to work with Samuray</p>
-{{ var }}
+<div class="container">
+<div class="col-sm-6 image-class">
+  <div class="text-center" style="max-width:600px;max-height:700px; margin-top:2vh;">
+  <img style="max-width: 100%;height: auto;"src="{% static 'img/samuray.png' %}" class="rounded img-fluid">
+  </div>
+  </div>
+</div>
+
+<div class="container">
+<h2>Sup Conconi,</h2>
+<p> This is supposed to be the last weight recorded in your scale (unless it was less than 10min ago) {{ var }} </p>
+</div>
 </body>
 </html>
