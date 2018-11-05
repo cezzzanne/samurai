@@ -1,17 +1,31 @@
 console.log("working");
+let rgbArray = ['rgb(255,99,71)', 'rgb(56,211,159)', 'rgb(255, 99, 132)', 'rgb(83,109,254)'];
+let rgbArrayCount = 0;
 var ctx = document.getElementById('myChart').getContext('2d');
-// let labs = document.getElementById("labels").getElementsByTagName("li");
 let labels = document.getElementById("labels");
-let measures = document.getElementById("measures");
 labels = convertToArray(labels);
-measures = convertToArray(measures);
-
+let people = document.getElementById("values").getElementsByTagName("ul");
+let arrayOfPeople = [];
+for (let person of people) {
+    let attrs = person.getElementsByTagName("li");
+    let newPerson = {name: attrs[0].innerText, measures: convertToArray(attrs[1]), color: rgbArray[rgbArrayCount]};
+    rgbArrayCount++;
+    arrayOfPeople.push(newPerson);
+}
 function convertToArray(arrayInString) {
     let a = arrayInString.innerText;
     a = a.replace(/'/g, '"');
     return JSON.parse(a);
 }
 
+function getData(arrayOfPeople) {
+    let data = [];
+    for (let ind of arrayOfPeople) {
+        let dataFull = {label: ind.name, backgroundColor: 'rgba(0, 0, 0, 0)', borderColor: ind.color, data: ind.measures};
+        data.push(dataFull);
+    }
+    return data;
+}
 var chart = new Chart(ctx, {
     // The type of chart we want to create
     type: 'line',
@@ -19,17 +33,7 @@ var chart = new Chart(ctx, {
     // The data for our dataset
     data: {
         labels: labels,
-        datasets: [{
-            label: "My Progress",
-            backgroundColor: 'rgba(0, 0, 0, 0)',
-            borderColor: 'rgb(255, 99, 132)',
-            data: measures,
-        }, {
-            label: "My Progress",
-            backgroundColor: "rgba(0, 0, 0, 0)",
-            borderColor: "rgb(54, 162, 235, 1)",
-            data: [62, 63, 63, 63],
-        }]
+        datasets: getData(arrayOfPeople)
     },
 
     // Configuration options go here

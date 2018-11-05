@@ -29,7 +29,17 @@
 
 <div class="container">
     <p id="labels" hidden>{{ labels }}</p>
-    <p id="measures" hidden>{{ measures }}</p>
+    <div id="values">
+        <!-- TODO: Iterate for person in group -->
+    <ul hidden>
+        <li>{{ name }}</li>
+        <li>{{ measures }}</li>
+    </ul>
+        <ul hidden>
+            <li>{{ name2 }}</li>
+            <li>{{ measures2 }}</li>
+        </ul>
+    </div>
 <!--
     <div id="labels" hidden>
     <ul>

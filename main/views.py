@@ -31,7 +31,7 @@ def test_success(request):
     measures = client.get_measures()
     res = resp.json()['body']['measuregrps']
     weights, days = get_weights(res)
-    return render(request, 'success.html', {'measures': weights, 'labels': days})
+    return render(request, 'success.html', {'measures': weights, 'labels': days, 'measures2': [55, 54, 57, 54], 'name': "Pablo", 'name2': "Maria"})
 
 
 def get_weights(json_res):
