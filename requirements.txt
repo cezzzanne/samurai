@@ -10,3 +10,4 @@ oauthlib==2.1.0
 requests==2.19.1
 requests-oauth==0.4.1
 requests-oauthlib==1.0.0
+mpld3==0.3

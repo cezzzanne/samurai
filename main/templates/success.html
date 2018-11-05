@@ -6,7 +6,6 @@
     {% load static %}
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="icon" href="{% static 'img/samll-samu.png' %}">
-
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/favicon/apple-touch-icon.png' %}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -29,8 +28,41 @@
 </div>
 
 <div class="container">
+    <p id="labels" hidden>{{ labels }}</p>
+    <p id="measures" hidden>{{ measures }}</p>
+<!--
+    <div id="labels" hidden>
+    <ul>
+        {% for v in labels %}
+        <li>{{ v }}</li>
+        {% endfor %}
+    </ul>
+    </div>
+     <div id="measures" hidden>
+    <ul>
+        {% for v in measures %}
+        <li>{{ v }}</li>
+        {% endfor %}
+    </ul>
+    </div>
+    <div id="names" hidden>
+    <ul>
+        <li>Adam</li>
+        <li>Maria</li>
+        <li>Pablo</li>
+    </ul>
+    </div>
+    -->
 <h2>Sup Conconi,</h2>
     <p> This is supposed to be the last weight recorded in your scale (unless it was less than 10min ago): {{ var }} </p>
+    <canvas id="myChart"></canvas>
+
 </div>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+<script src="{% static 'success.js' %}"></script>
+
 </body>
 </html>
