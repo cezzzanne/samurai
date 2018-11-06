@@ -1,6 +1,10 @@
 from django.urls import path, include
-from .views import test, test_success
+from .views import test, test_success, register, custom_login, home, success
+
 urlpatterns = [
     path('', test),
-    path('success', test_success)
+    path('register', register),
+    path('login', custom_login),
+    path('home', home),
+    path('success', success)
 ]

@@ -2,12 +2,12 @@ from django.shortcuts import render
 from nokia import NokiaAuth, NokiaApi
 import requests
 import time
-import mpld3
-
-CLIENT_ID = "a2d850f43357b6fb2ab22a59b431ad3d438a0031d329ecec37686764e49b7939"
-CONSUMER_SECRET = "7b52d21d03a644fe0491d7b0455a46264dfb7d055a36bb5be0ef7afc160c4bf1"
-CALLBACK_URI_TEST = "http://127.0.0.1:8000/test/success"
-CALLBACK_URI = "http://www.samuray.ml/test/success"
+from samurai.settings import CLIENT_ID, CONSUMER_SECRET, CALLBACK_URI, CALLBACK_URI_TEST
+from django.contrib.auth.models import User
+from .models import Member, Group
+from django.http import HttpResponseRedirect
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
 
 
 def test(request):
@@ -15,6 +15,51 @@ def test(request):
     auth = NokiaAuth(CLIENT_ID, CONSUMER_SECRET, callback_uri=CALLBACK_URI_TEST)
     authorize_url = auth.get_authorize_url()
     return render(request, 'test.html', {"auth_url": authorize_url})
+
+
+def register(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        u = User.objects.create(username=username)
+        email = request.POST['email']
+        password = request.POST['password']
+        u.set_password(password)
+        u.save()
+        # TODO: Change time created to when the group was created
+        time_created = int(time.time())
+        new_member = Member(user=u, email=email, start_date=time_created)
+        new_member.save()
+        return HttpResponseRedirect('test/login/')
+    return render(request, 'register.html')
+
+
+def custom_login(request):
+    if request.method == "POST":
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return HttpResponseRedirect('/test/home')
+    return render(request, 'login.html')
+
+
+def success(request):
+    if request.user.member.access_token is None:
+        auth = NokiaAuth(CLIENT_ID, CONSUMER_SECRET, callback_uri=CALLBACK_URI_TEST)
+        authorization_response = request.GET['code']
+        credentials = auth.get_credentials(authorization_response)
+        request.user.member.update_credentials(credentials)
+    weights = request.user.member.get_weights()
+    days = request.user.member.get_days()
+    return render(request, 'success.html', {'measures': weights, 'labels': days, 'measures2': [55], 'name': "Pablo", 'name2': "Maria"} )
+
+
+@login_required()
+def home(request):
+    auth = NokiaAuth(CLIENT_ID, CONSUMER_SECRET, callback_uri=CALLBACK_URI_TEST)
+    authorize_url = auth.get_authorize_url()
+    return render(request, 'home.html', {"url": authorize_url})
 
 
 def test_success(request):
