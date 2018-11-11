@@ -18,19 +18,21 @@ class Member(models.Model):
 
     # TODO: Make get_weights and get days into the same function that returns 2 arrays
     def get_weights(self):
-        credentials = NokiaCredentials(self.access_token, self.token_expiry, self.token_type, self.refresh_token, self.api_id, CLIENT_ID,
-                                       CONSUMER_SECRET)
-        self.update_credentials(credentials)
+        access_link = "https://account.withings.com/oauth2/token"
+        headers = {'grant_type': 'refresh_token', 'client_id': CLIENT_ID, 'client_secret': CONSUMER_SECRET, 'refresh_token': str(self.refresh_token)}
+        req = requests.post(access_link, data=headers)
+        self.update_access_token(req.json())
         link = "https://wbsapi.withings.net/measure?action=getmeas&access_token=" + self.access_token + "&meastype=1&category=1&startdate=" + str(self.start_date) + "&enddate=" + str(int(time.time()))
         response = requests.get(link)
         response_in_json = response.json()['body']['measuregrps']
         return self.get_array_of_weights(response_in_json)
 
     def get_days(self):
-        credentials = NokiaCredentials(self.access_token, self.token_expiry, self.token_type, self.refresh_token,
-                                       self.api_id, CLIENT_ID,
-                                       CONSUMER_SECRET)
-        self.update_credentials(credentials)
+        access_link = "https://account.withings.com/oauth2/token"
+        headers = {'grant_type': 'refresh_token', 'client_id': CLIENT_ID, 'client_secret': CONSUMER_SECRET,
+                   'refresh_token': str(self.refresh_token)}
+        req = requests.post(access_link, data=headers)
+        self.update_access_token(req.json())
         link = "https://wbsapi.withings.net/measure?action=getmeas&access_token=" + self.access_token + "&meastype=1&category=1&startdate=" + str(
             self.start_date) + "&enddate=" + str(int(time.time()))
         response = requests.get(link)
@@ -59,6 +61,12 @@ class Member(models.Model):
         self.token_type = credentials.token_type
         self.refresh_token = credentials.refresh_token
         self.api_id = credentials.user_id
+        self.save()
+
+    def update_access_token(self, credentials):
+        self.access_token = credentials['access_token']
+        self.token_expiry = credentials['expires_in']
+        self.refresh_token = credentials['refresh_token']
         self.save()
 
     def __str__(self):

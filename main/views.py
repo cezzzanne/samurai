@@ -9,7 +9,6 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 
-
 def test(request):
     # TODO: Test is on
     auth = NokiaAuth(CLIENT_ID, CONSUMER_SECRET, callback_uri=CALLBACK_URI_TEST)
@@ -41,6 +40,7 @@ def custom_login(request):
         if user is not None:
             login(request, user)
             return HttpResponseRedirect('/test/home')
+    # TODO: Return error of user not found
     return render(request, 'login.html')
 
 
@@ -49,17 +49,20 @@ def success(request):
         auth = NokiaAuth(CLIENT_ID, CONSUMER_SECRET, callback_uri=CALLBACK_URI_TEST)
         authorization_response = request.GET['code']
         credentials = auth.get_credentials(authorization_response)
+        client = NokiaApi(credentials)
         request.user.member.update_credentials(credentials)
     weights = request.user.member.get_weights()
     days = request.user.member.get_days()
-    return render(request, 'success.html', {'measures': weights, 'labels': days, 'measures2': [55], 'name': "Pablo", 'name2': "Maria"} )
+    return render(request, 'success.html', {'measures': weights, 'labels': days, 'measures2': [55, 56], 'name': "Pablo", 'name2': "Maria"} )
 
 
 @login_required()
 def home(request):
-    auth = NokiaAuth(CLIENT_ID, CONSUMER_SECRET, callback_uri=CALLBACK_URI_TEST)
-    authorize_url = auth.get_authorize_url()
-    return render(request, 'home.html', {"url": authorize_url})
+    if request.user.member.access_token is None:
+        auth = NokiaAuth(CLIENT_ID, CONSUMER_SECRET, callback_uri=CALLBACK_URI_TEST)
+        authorize_url = auth.get_authorize_url()
+        return render(request, 'home.html', {"url": authorize_url})
+    return HttpResponseRedirect('/test/success')
 
 
 def test_success(request):
