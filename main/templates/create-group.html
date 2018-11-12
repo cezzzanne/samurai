@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Group</title>
+</head>
+<body>
+<h2> Create a group and start playing! </h2>
+<h4> Enter the email of the people you would like to add to your group! (Up to 4 people)</h4>
+<h5>The ID has to be unique for each group. Come up with something fun!</h5>
+<form id="form" class="register-form" action='' method="post">
+    {% csrf_token %}
+    <table>
+        <input type="text" class="form-control myInput" name="id" placeholder="Group ID" aria-describedby="sizing-addon1">
+        <input type="text" class="form-control myInput" name="name" placeholder="Group Name" aria-describedby="sizing-addon1">
+        <input type="email" class="form-control myInput" name="email1" placeholder="Email 1" aria-describedby="sizing-addon2">
+        <input type="email" class="form-control myInput" name="email2" placeholder="Email 2" aria-describedby="sizing-addon2">
+        <input type="email" class="form-control myInput" name="email3" placeholder="Email 3" aria-describedby="sizing-addon2">
+        <input type="email" class="form-control myInput" name="email4" placeholder="Email 4" aria-describedby="sizing-addon2">
+    </table>
+    <input type="submit" value="Register">
+</form>
+</body>
+</html>

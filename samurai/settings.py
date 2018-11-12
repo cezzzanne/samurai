@@ -30,7 +30,7 @@ ALLOWED_HOSTS = ['samuray-pablo.herokuapp.com', 'www.samuray.ml', '127.0.0.1']
 
 CLIENT_ID = "a2d850f43357b6fb2ab22a59b431ad3d438a0031d329ecec37686764e49b7939"
 CONSUMER_SECRET = "7b52d21d03a644fe0491d7b0455a46264dfb7d055a36bb5be0ef7afc160c4bf1"
-CALLBACK_URI_TEST = "http://127.0.0.1:8000/test/success"
+CALLBACK_URI_TEST = "http://127.0.0.1:8000/main"
 CALLBACK_URI = "http://www.samuray.ml/test/success"
 # Application definition
 
@@ -138,3 +138,11 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
+
+# EMAIL SETTINGS
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = "donotreply.samuray@gmail.com"
+EMAIL_HOST_PASSWORD = "infinitum"

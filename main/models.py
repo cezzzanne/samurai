@@ -6,6 +6,14 @@ from django.contrib.auth.models import User
 from samurai.settings import CLIENT_ID, CONSUMER_SECRET
 
 
+class Group(models.Model):
+    unique_id = models.CharField(max_length=100, null=True)
+    name = models.CharField(max_length=200, null=True)
+
+    def __str__(self):
+        return self.unique_id
+
+
 class Member(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='member')
     email = models.EmailField(max_length=150, null=True)
@@ -15,6 +23,7 @@ class Member(models.Model):
     refresh_token = models.TextField(null=True)
     api_id = models.TextField(null=True)
     start_date = models.IntegerField(default=0)
+    group = models.ForeignKey(Group, on_delete=models.CASCADE, related_name='member', null=True)
 
     # TODO: Make get_weights and get days into the same function that returns 2 arrays
     def get_weights(self):
@@ -71,15 +80,3 @@ class Member(models.Model):
 
     def __str__(self):
         return self.user.username
-
-
-class Group(models.Model):
-    unique_id = models.CharField(max_length=100, null=True)
-    user1 = models.OneToOneField(Member, on_delete=models.CASCADE, related_name='user1')
-    user2 = models.OneToOneField(Member, on_delete=models.CASCADE, related_name='user2')
-    user3 = models.OneToOneField(Member, on_delete=models.CASCADE, related_name='user3')
-    user4 = models.OneToOneField(Member, on_delete=models.CASCADE, related_name='user4')
-    user5 = models.OneToOneField(Member, on_delete=models.CASCADE, related_name='user5')
-
-    def __str__(self):
-        return self.unique_id
