@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Success</title>
     {% load static %}
+    {% load myfilters %}
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="icon" href="{% static 'img/samll-samu.png' %}">
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/favicon/apple-touch-icon.png' %}">
@@ -28,17 +29,21 @@
 </div>
 
 <div class="container">
-    <p id="labels" hidden>{{ labels }}</p>
-    <div id="values">
-        <!-- TODO: Iterate for person in group -->
+    <p id="labels" hidden>{{ user|get_days }}</p>
+
+    <div id="values" hidden>
+        {% for person in people %}
     <ul hidden>
-        <li>{{ name }}</li>
-        <li>{{ measures }}</li>
+        <li>{{ person.user.username }}</li>
+        <li>{{ person|get_weights }}</li>
     </ul>
+        {% endfor %}
+<!--
         <ul hidden>
             <li>{{ name2 }}</li>
             <li>{{ measures2 }}</li>
         </ul>
+        -->
     </div>
 <!--
     <div id="labels" hidden>
@@ -63,8 +68,6 @@
     </ul>
     </div>
     -->
-<h2>Sup Conconi,</h2>
-    <p> This is supposed to be the last weight recorded in your scale (unless it was less than 10min ago): {{ var }} </p>
     <canvas id="myChart"></canvas>
 
 </div>

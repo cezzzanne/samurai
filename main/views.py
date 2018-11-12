@@ -52,10 +52,11 @@ def main(request):
         credentials = auth.get_credentials(authorization_response)
         client = NokiaApi(credentials)
         request.user.member.update_credentials(credentials)
-    
+    people = Member.objects.filter(group=request.user.member.group)
     weights = request.user.member.get_weights()
     days = request.user.member.get_days()
-    return render(request, 'main.html', {'measures': weights, 'labels': days, 'measures2': [55, 56], 'name': "Pablo", 'name2': "Maria"})
+    return render(request, 'main.html', {'people': people, 'user': request.user.member})
+    # return render(request, 'main.html', {'measures': weights, 'labels': days, 'measures2': [55, 56], 'name': "Pablo", 'name2': "Pablo3", 'person': person})
 
 
 @login_required()
